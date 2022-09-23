@@ -1,0 +1,2 @@
+@echo off
+xcopy /s /y "Q\Public\Blender_Addons\*" "C:\Users\%username%\AppData\Roaming\Blender Foundation\Blender\3.2\scripts\addons"
