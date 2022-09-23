@@ -1,0 +1,9 @@
+@echo off
+cd C:\Program Files\Mozilla Thunderbird
+mkdir distribution
+cd C:\Program Files\Mozilla Thunderbird\distribution
+  echo.>"C:\Program Files\policies.txt"
+echo { "policies": { "DisableAppUpdate": true } }> policies.txt
+ren *policies.txt *policies.json
+taskkill /IM thunderbird.exe >nul
+start thunderbird.exe
