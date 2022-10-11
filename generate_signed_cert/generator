@@ -1,0 +1,5 @@
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
+$cert= Read-Host -Prompt "Podaj IP/Nazwe domeny"
+New-SelfSignedCertificate -DnsName "$cert" -CertStoreLocation "C:\ProgramData"
+Write-Host -NoNewLine 'Wygenerowano pomyslnie, nacisnij dowolny klawisz w celu zamkniecia skryptu';
+$null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
