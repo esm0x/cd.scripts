@@ -3,4 +3,4 @@ Simple Powershell script that creates self-signed certificate. Made to avoid ann
 * Prompts user to provide IP address or domain name and saves as variable
 * Creates a Certificate with this specific variable
 * Notifies when done and ready to close
-!Requires manuall import to browser or system-wide installation
+* !Requires manuall import to browser or system-wide installation
