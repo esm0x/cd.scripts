@@ -1,5 +1,7 @@
 #First install the openai module with the command below:
-#Install-Module OpenAI
+# Install-Module OpenAI
+#NOTE: if powershell returns an error "no OpenAI package found, you may need to add extra repository running the command below:
+# Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 # Import the OpenAI module
 Import-Module OpenAI
