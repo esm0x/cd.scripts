@@ -1,0 +1,150 @@
+{
+  "settings": {
+    "min_cvss": 7.0,
+    "include_unscored": true,
+    "max_items_per_message": 15,
+    "initial_lookback_days": 3,
+    "overlap_hours": 24,
+    "state_retention_days": 400,
+    "mention_on_exploited": "<!channel>"
+  },
+  "products": [
+    {
+      "id": "macos",
+      "name": "macOS 14+",
+      "emoji": ":computer:",
+      "min_version": "14",
+      "nvd": {
+        "affected": [{"vendor": "^Apple", "product": "^macOS"}],
+        "cpe": ["apple:macos", "apple:mac_os_x"]
+      },
+      "kev": {"vendor": "^Apple$", "text": "macOS|OS X"},
+      "bulletins": [{"source": "apple", "title": "^macOS"}]
+    },
+    {
+      "id": "ios",
+      "name": "iOS",
+      "emoji": ":iphone:",
+      "nvd": {
+        "affected": [{"vendor": "^Apple", "product": "^iOS"}],
+        "cpe": ["apple:iphone_os"]
+      },
+      "kev": {"vendor": "^Apple$", "text": "\\biOS\\b"},
+      "bulletins": [{"source": "apple", "title": "^iOS"}]
+    },
+    {
+      "id": "chrome",
+      "name": "Google Chrome",
+      "emoji": ":globe_with_meridians:",
+      "nvd": {
+        "affected": [{"vendor": "^Google", "product": "^Chrome$"}],
+        "cpe": ["google:chrome"]
+      },
+      "kev": {"vendor": "^Google$", "text": "Chrom(e|ium)"},
+      "bulletins": [{"source": "chrome", "title": "^Stable Channel Update for Desktop$"}]
+    },
+    {
+      "id": "firefox",
+      "name": "Mozilla Firefox",
+      "emoji": ":fox_face:",
+      "nvd": {
+        "affected": [{"vendor": "^Mozilla", "product": "^Firefox"}],
+        "cpe": ["mozilla:firefox", "mozilla:firefox_esr", "mozilla:firefox_mobile"]
+      },
+      "kev": {"vendor": "^Mozilla$", "text": "Firefox|Multiple Products"},
+      "bulletins": [{"source": "mozilla", "title": "fixed in Firefox\\b"}]
+    },
+    {
+      "id": "brave",
+      "name": "Brave",
+      "emoji": ":lion_face:",
+      "nvd": {
+        "affected": [{"vendor": "^Brave", "product": "Brave"}],
+        "cpe": ["brave:brave", "brave:brave_browser"],
+        "description": "\\bBrave (Browser|desktop|for (iOS|Android|macOS|Windows))\\b"
+      },
+      "kev": {"vendor": "^(Brave|Google)$", "text": "Brave|Chromium"}
+    },
+    {
+      "id": "ubiquiti",
+      "name": "Ubiquiti / UniFi",
+      "emoji": ":satellite_antenna:",
+      "nvd": {
+        "affected": [{"vendor": "^(Ubiquiti|UI)\\b", "product": "."}],
+        "cpe": ["ui:*", "ubiquiti:*"],
+        "description": "\\b(Ubiquiti|UniFi (Network|Protect|OS|Access|Talk|Connect|Identity|Express|Dream))\\b"
+      },
+      "kev": {"vendor": "^Ubiquiti"}
+    },
+    {
+      "id": "xcode",
+      "name": "Xcode",
+      "emoji": ":hammer_and_wrench:",
+      "nvd": {
+        "affected": [{"vendor": "^Apple", "product": "^Xcode"}],
+        "cpe": ["apple:xcode"]
+      },
+      "kev": {"vendor": "^Apple$", "text": "Xcode"},
+      "bulletins": [{"source": "apple", "title": "^Xcode"}]
+    },
+    {
+      "id": "android-studio",
+      "name": "Android Studio",
+      "emoji": ":robot_face:",
+      "nvd": {
+        "affected": [{"vendor": "^(Google|Android)", "product": "Android Studio"}],
+        "cpe": ["google:android_studio"],
+        "description": "\\bAndroid Studio\\b"
+      },
+      "kev": {"vendor": "^Google$", "text": "Android Studio"}
+    },
+    {
+      "id": "vscode",
+      "name": "Visual Studio Code",
+      "emoji": ":large_blue_square:",
+      "nvd": {
+        "affected": [{"vendor": "^Microsoft", "product": "^Visual Studio Code"}],
+        "cpe": ["microsoft:visual_studio_code"],
+        "description": "\\b(Visual Studio Code|VS ?Code)\\b"
+      },
+      "kev": {"vendor": "^Microsoft$", "text": "Visual Studio Code"},
+      "github_repos": ["microsoft/vscode"]
+    },
+    {
+      "id": "claude",
+      "name": "Claude (Code / Desktop)",
+      "emoji": ":large_orange_diamond:",
+      "nvd": {
+        "affected": [{"vendor": "^anthropics?\\b", "product": "."}],
+        "cpe": ["anthropic:*"],
+        "description": "\\b(Anthropic|Claude (Code|Desktop))\\b"
+      },
+      "kev": {"vendor": "^Anthropic"},
+      "github_repos": ["anthropics/claude-code"]
+    },
+    {
+      "id": "cursor",
+      "name": "Cursor",
+      "emoji": ":black_large_square:",
+      "nvd": {
+        "affected": [{"vendor": "^(cursor|anysphere)\\b", "product": "cursor"}],
+        "cpe": ["anysphere:cursor", "cursor:cursor"],
+        "description": "\\bCursor (is a code editor|IDE|AI code editor)\\b"
+      },
+      "kev": {"vendor": "^(Anysphere|Cursor)"},
+      "github_repos": ["cursor/cursor"]
+    },
+    {
+      "id": "codex",
+      "name": "OpenAI Codex",
+      "emoji": ":white_square:",
+      "nvd": {
+        "affected": [{"vendor": "^openai$", "product": "codex"}],
+        "cpe": ["openai:codex*"],
+        "description": "\\bOpenAI Codex\\b"
+      },
+      "kev": {"vendor": "^OpenAI$", "text": "Codex"},
+      "github_repos": ["openai/codex"]
+    }
+  ]
+}

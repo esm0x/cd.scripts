@@ -1,0 +1,63 @@
+name: Security alerts -> Slack
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # every hour
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print the messages in the log, do not post to Slack"
+        type: boolean
+        default: false
+      since_days:
+        description: "Look back N days instead of since the last run (empty = normal)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-alerts
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # state.json remembers what was already posted; it lives in the Actions cache between runs.
+      - name: Restore state
+        uses: actions/cache/restore@v4
+        with:
+          path: security_alerts/state.json
+          key: security-alerts-state-${{ github.run_id }}
+          restore-keys: security-alerts-state-
+
+      - name: Check feeds and notify Slack
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL: ${{ vars.SLACK_CHANNEL }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SINCE_DAYS: ${{ inputs.since_days }}
+        run: |
+          args=()
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          if [ -n "$SINCE_DAYS" ]; then args+=(--since-days "$SINCE_DAYS"); fi
+          python security_alerts/security_alerts.py "${args[@]}"
+
+      - name: Save state
+        if: always() && inputs.dry_run != true
+        uses: actions/cache/save@v4
+        with:
+          path: security_alerts/state.json
+          key: security-alerts-state-${{ github.run_id }}
